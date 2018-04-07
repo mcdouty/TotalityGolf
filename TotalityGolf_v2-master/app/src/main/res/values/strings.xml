@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Totality Golf</string>
+    <string name="header"><i>Envision your future.</i></string>
+    <string name="button1"><b>Home</b></string>
+    <string name="button2"><b>Swing Analyzer</b></string>
+    <string name="button3"><b>Training</b></string>
+    <string name="TrainingHeader"><i>Training</i></string>
+    <string name="SwingAnalyzerHeader"><i>Swing Analyzer</i></string>
+    <string name="take_picture">Capture</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+</resources>

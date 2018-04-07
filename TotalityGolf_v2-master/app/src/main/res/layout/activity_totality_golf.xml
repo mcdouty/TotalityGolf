@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_background"
+    tools:context="com.example.android.totalitygolf.TotalityGolf">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalView"
+        android:layout_width="368dp"
+        android:layout_height="207dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.813">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/HomeButton"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/button_alpha"
+                android:fontFamily="@font/work_sans"
+                android:onClick="goToHomeActivity"
+                android:text="@string/button1"
+                android:textColor="#060606"
+                android:textSize="10pt"
+                app:layout_constraintEnd_toStartOf="@id/SwingAnalyzerButton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/SwingAnalyzerButton"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_alpha"
+                android:fontFamily="@font/work_sans"
+                android:onClick="goToSwingAnalyzerActivity"
+                android:text="@string/button2"
+                android:textColor="#060606"
+                android:textSize="10pt"
+                app:layout_constraintEnd_toStartOf="@id/TrainingButton"
+                app:layout_constraintStart_toEndOf="@id/HomeButton" />
+
+            <Button
+                android:id="@+id/TrainingButton"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/button_alpha"
+                android:fontFamily="@font/work_sans"
+                android:onClick="goToTrainingActivity"
+                android:text="@string/button3"
+                android:textColor="#060606"
+                android:textSize="10pt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/SwingAnalyzerButton" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="250dp"
+        android:layout_height="125dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/logo_three_alpha"
+        android:elevation="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
+
+</android.support.constraint.ConstraintLayout>
