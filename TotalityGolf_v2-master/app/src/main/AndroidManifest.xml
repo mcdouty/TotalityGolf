@@ -32,6 +32,7 @@
         <activity android:name="TrainingActivity"/>
         <activity android:name="SwingAnalyzerActivity" />
         <activity android:name="TotalityGolf"/>
+        <activity android:name=".detail_activity"/>
 
         <meta-data
             android:name="preloaded_fonts"
