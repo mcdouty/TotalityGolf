@@ -80,7 +80,7 @@ public class SwingAnalyzerActivity extends AppCompatActivity {
                                 break;
 
                             case R.id.homeActivity:
-                                Intent intent2 = new Intent(SwingAnalyzerActivity.this, HomeActivity.class);
+                                Intent intent2 = new Intent(SwingAnalyzerActivity.this, TotalityGolf.class);
                                 startActivity(intent2);
                                 break;
 

@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,79 +22,26 @@ import android.widget.Toast;
 
 
 public class TrainingProductFragment extends Fragment {
+    public static final String TAG = "Training Product Fragment";
+
+    String[] ProductTitle = {"Beginner","Intermediate","Advanced"};
+    int[] ProductImageList = new int[]{R.drawable.starting_clock, R.drawable.driving_range, R.drawable.ball_pyramid};
+
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
-                R.layout.recycler_view, container, false);
-        TrainingVideoFragment.ContentAdapter adapter = new TrainingVideoFragment.ContentAdapter(recyclerView.getContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        return recyclerView;
-    }
+                             @Nullable Bundle savedInstanceState) {
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        public ImageView picture;
-        public TextView name;
-        public TextView description;
-        public ViewHolder (LayoutInflater inflater, ViewGroup parent){
-            super(inflater.inflate(R.layout.fragment_training_lesson, parent, false));
-            //TO DO: Fill in this next lines with Card images/content
-            //picture = (ImageView) itemView.findViewById(R.id._____);
-            //name = (TextView) itemView.findViewById(R.id.______);
-            //description = (TextView) itemView.findViewById(R.id.______);
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    //TO DO: Create detail activity class
-                    Intent intent = new Intent(context, detail_activity.class);
-                    intent.putExtra(detail_activity.EXTRA_POSITION, getAdapterPosition());
-                    context.startActivity(intent);
-                }
-            });
-        }
-    }
-    //adapter to display recyclerview
-    public static class ContentAdapter extends RecyclerView.Adapter<TrainingVideoFragment.ViewHolder> {
-        //Set numbers of cards in recyclerview
-        private static final int LENGTH = 18;
+        View view = inflater.inflate(R.layout.fragment_training_product, container, false);
 
-        private final String[] mPlaces;
-        private final String[] mPlaceDesc;
-        private final Drawable[] mPlacePictures;
+        RecyclerView ProductRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewProduct);
 
-        public ContentAdapter(Context context) {
-            Resources resources = context.getResources();
-            //TO DO: Create array files for the below
-            mPlaces = resources.getStringArray(R.array.places);
-            mPlaceDesc = resources.getStringArray(R.array.place_desc);
-            TypedArray a = resources.obtainTypedArray(R.array.places_picture);
-            mPlacePictures = new Drawable[a.length()];
-            for (int i = 0; i < mPlacePictures.length; i++) {
-                mPlacePictures[i] = a.getDrawable(i);
-            }
-            a.recycle();
-        }
+        ProductRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+        VideoCardViewAdapter ProductAdapter = new VideoCardViewAdapter(this.getActivity(), ProductTitle, ProductImageList);
 
-        @Override
-        public TrainingVideoFragment.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new TrainingVideoFragment.ViewHolder(LayoutInflater.from(parent.getContext()), parent);
-        }
+        ProductRecyclerView.setAdapter(ProductAdapter);
 
-        @Override
-        public void onBindViewHolder(TrainingVideoFragment.ViewHolder holder, int position) {
-            holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
-            holder.name.setText(mPlaces[position % mPlaces.length]);
-            holder.description.setText(mPlaceDesc[position % mPlaceDesc.length]);
-        }
-
-        @Override
-        public int getItemCount() {
-            return LENGTH;
-        }
-
+        return view;
     }
 }

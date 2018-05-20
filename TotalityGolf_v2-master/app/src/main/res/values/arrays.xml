@@ -82,6 +82,7 @@
     -->
     <array name="places_picture">
         <item>@drawable/ic_home_white</item>
+        <item>@drawable/ic_filter_1_white</item>
     </array>
 
 </resources>

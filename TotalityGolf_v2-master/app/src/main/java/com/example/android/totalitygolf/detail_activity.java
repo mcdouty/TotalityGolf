@@ -14,7 +14,7 @@ public class detail_activity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "position";
 
     //@Override
-    public void onCreat(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));

@@ -3,14 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/one"
             android:icon="@drawable/ic_home_white"
             android:tint="#605f5f"
             android:title="One" />
         <item
+            android:id="@+id/two"
             android:icon="@drawable/ic_home_white"
             android:tint="#605f5f"
             android:title="Two" />
         <item
+            android:id="@+id/three"
             android:icon="@drawable/ic_home_white"
             android:tint="#605f5f"
             android:title="Three" />

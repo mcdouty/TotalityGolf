@@ -2,6 +2,7 @@ package com.example.android.totalitygolf;
 
 import android.app.Activity;
 import android.app.Application;
+import android.nfc.Tag;
 import android.support.design.widget.NavigationView;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,23 +43,68 @@ public class TotalityGolf extends AppCompatActivity {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
     private DrawerLayout mDrawerLayout;
+    private SectionsPageAdapter mSectionsAdapter;
+    private ViewPager mViewPager;
+    private String TAG;
+    RecyclerView recyclerView;
+    List<VideoCardView> VideoCardList;
+    private TabLayout tabLayout;
+    private ViewPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_totality_golf);
+        Log.d(TAG, "onCreate: Starting");
+
+        mSectionsAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        setupViewPager(mViewPager);
+
+        //set tabs inside toolbar
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        
 
         //add toolbar to main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /**
+        //getting recycler view xml
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //set viewpager for each tab
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        setupViewPager(viewPager);
+        //initialize video card list
+        VideoCardList = new ArrayList<>();
 
-        //set tabs inside toolbar
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        //add cards to view
+        VideoCardList.add(
+                new VideoCardView(
+                        1,
+                        "Beginner",
+                        "Explore the fundamentals of the swing and start from the ground up.",
+                        R.drawable.ball_pyramid));
+
+        VideoCardList.add(
+                new VideoCardView(
+                        2,
+                        "Intermediate",
+                        "Hone in your fundamentals and learn to incorporate new skills.",
+                        R.drawable.trainingbackground));
+
+        VideoCardList.add(
+                new VideoCardView(
+                        3,
+                        "Advanced",
+                        "Master the game.",
+                        R.drawable.ball_pyramid));
+
+        VideoCardViewAdapter adapter = new VideoCardViewAdapter(this, VideoCardList);
+
+        recyclerView.setAdapter(adapter);*/
+        /*
 
         //create navigation drawer and inflate layout
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -87,7 +136,7 @@ public class TotalityGolf extends AppCompatActivity {
                     }
                 }
         );
-
+*/
         //set bottom navigation bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
@@ -103,7 +152,7 @@ public class TotalityGolf extends AppCompatActivity {
                                 break;
 
                             case R.id.homeActivity:
-                                Intent intent2 = new Intent(TotalityGolf.this, HomeActivity.class);
+                                Intent intent2 = new Intent(TotalityGolf.this, TotalityGolf.class);
                                 startActivity(intent2);
                                 break;
 
@@ -121,13 +170,13 @@ public class TotalityGolf extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new TrainingVideoFragment(), "Video Tutorials");
-        adapter.addFragment(new TrainingLessonFragment(), "Lesson Plans");
-        adapter.addFragment(new TrainingProductFragment(), "Training Aids");
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeActivityFragment(), "Activity");
+        adapter.addFragment(new HomeNewsFeedFragment(), "News Feed");
+        adapter.addFragment(new HomeAchievementsFragment(), "Achievements");
         viewPager.setAdapter(adapter);
     }
-
+/*
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -171,5 +220,5 @@ public class TotalityGolf extends AppCompatActivity {
             }
             return super.onOptionsItemSelected(item);
         }
-
+*/
 }
